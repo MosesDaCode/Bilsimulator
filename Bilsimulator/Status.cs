@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bilsimulator
+namespace BilSimulator
 {
     public static class Status
     {

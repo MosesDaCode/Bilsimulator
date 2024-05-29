@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bilsimulator
+namespace BilSimulator
 {
-    public static class DriverActions
+    public class DriverActions
     {
         public static void Rest(Driver driver)
         {
@@ -22,7 +22,7 @@ namespace Bilsimulator
             if (driver.Tiredness >= 100)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Föraren är extremt trött! Det är mycket farligt att fortsätta köra. Tryck på enter för att fortsätta");
+                Console.WriteLine("Föraren är extremt trött! Det är mycket farligt att fortsätta köra. VILA! Tryck på enter för att fortsätta");
                 Console.ResetColor();
             }
             else if (driver.Tiredness >= 70)

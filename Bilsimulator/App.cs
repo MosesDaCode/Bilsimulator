@@ -5,17 +5,19 @@ using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bilsimulator
+namespace BilSimulator
 {
     public class App
     {
-        private readonly Car car;
-        private readonly Driver driver;
+        private readonly Car _car;
+        private readonly Driver _driver;
+        private readonly CarActions _carActions;
 
         public App()
         {
-            car = new Car();
-            driver = new Driver();
+            _car = new Car();
+            _driver = new Driver();
+            _carActions = new CarActions();
         }
 
         public void Run()
@@ -28,22 +30,22 @@ namespace Bilsimulator
                 switch (command)
                 {
                     case "1":
-                        CarActions.Drive(car, driver);
+                        CarActions.Drive(_car, _driver);
                         break;
                     case "2":
-                        CarActions.TurnLeft(car, driver);
+                        CarActions.TurnLeft(_car, _driver);
                         break;
                     case "3":
-                        CarActions.TurnRight(car, driver);
+                        CarActions.TurnRight(_car, _driver);
                         break;
                     case "4":
-                        CarActions.Reverse(car, driver);
+                        CarActions.Reverse(_car, _driver);
                         break;
                     case "5":
-                        CarActions.Refuel(car, driver);
+                        _carActions.Refuel(_car, _driver);
                         break;
                     case "6":
-                        DriverActions.Rest(driver);
+                        DriverActions.Rest(_driver);
                         break;
                     case "7":
                         Console.WriteLine("Programmet avslutas.");
@@ -54,7 +56,7 @@ namespace Bilsimulator
                         break;
                 }
                 Console.Clear();
-                Status.PrintStatus(car, driver);
+                Status.PrintStatus(_car, _driver);
 
             }
         }

@@ -1,4 +1,4 @@
-﻿namespace Bilsimulator
+﻿namespace BilSimulator
 {
     internal class Program
     {

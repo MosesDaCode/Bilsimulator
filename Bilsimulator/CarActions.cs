@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bilsimulator
+namespace BilSimulator
 {
-    public static class CarActions
+    public class CarActions
     {
         public static void Drive(Car car, Driver driver)
         {
@@ -100,7 +100,7 @@ namespace Bilsimulator
 
         }
 
-        public static void Refuel(Car car, Driver driver)
+        public void Refuel(Car car, Driver driver)
         {
             car.Fuel = 100;
             driver.Tiredness += 5;
