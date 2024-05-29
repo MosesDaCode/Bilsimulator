@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34916.146
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bilsimulator", "Bilsimulator\Bilsimulator.csproj", "{05B27B35-18B7-4514-9707-2EB0B171A22E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{A31195CC-4F7A-4DEC-8308-6CA02431ECB0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{05B27B35-18B7-4514-9707-2EB0B171A22E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05B27B35-18B7-4514-9707-2EB0B171A22E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05B27B35-18B7-4514-9707-2EB0B171A22E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05B27B35-18B7-4514-9707-2EB0B171A22E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A31195CC-4F7A-4DEC-8308-6CA02431ECB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A31195CC-4F7A-4DEC-8308-6CA02431ECB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A31195CC-4F7A-4DEC-8308-6CA02431ECB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A31195CC-4F7A-4DEC-8308-6CA02431ECB0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0FBAAA80-27CB-47FC-8407-BA0184CA89C9}
+	EndGlobalSection
+EndGlobal
