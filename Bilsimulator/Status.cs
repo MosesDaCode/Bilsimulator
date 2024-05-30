@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace BilSimulator
 {
-    public static class Status
+    public class Status
     {
-        public static void PrintStatus(Car car, Driver driver)
+        public static bool IsTesting = false;
+        public void PrintStatus(Car car, Driver driver)
         {
             Console.WriteLine($"\nStatus:");
             Console.WriteLine($"Riktning: {car.Direction}");

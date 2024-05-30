@@ -8,13 +8,14 @@ namespace BilSimulator
 {
     public class DriverActions
     {
+        public static bool IsTesting = false;
         public static void Rest(Driver driver)
         {
             driver.Tiredness = 0;
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Föraren har vilat och är nu pigg. Tryck på enter för att fortsätta");
             Console.ResetColor();
-            Console.ReadKey();
+            if (!IsTesting) Console.ReadKey();
         }
 
         public static void CheckTiredness(Driver driver)

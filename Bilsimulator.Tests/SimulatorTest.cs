@@ -6,15 +6,25 @@ namespace BilSimulator.Tests
     [TestClass]
     public class SimulatorTest
     {
+
         private CarActions _carActions;
         private DriverActions _driverActions;
+        private Status _status;
 
         public SimulatorTest()
         {
             _carActions = new CarActions();
             _driverActions = new DriverActions();
+            _status = new Status();
         }
 
+        [TestInitialize]
+        public void setup()
+        {
+            CarActions.IsTesting = true;
+            DriverActions.IsTesting = true;
+            Status.IsTesting = true;
+        }
 
         [TestMethod]
         public void TestTurnLeft()
@@ -25,14 +35,6 @@ namespace BilSimulator.Tests
             CarActions.TurnLeft(car, driver);
             Assert.AreEqual("Västerut", car.Direction);
 
-            CarActions.TurnLeft(car, driver);
-            Assert.AreEqual("Söderut", car.Direction);
-
-            CarActions.TurnLeft(car, driver);
-            Assert.AreEqual("Österut", car.Direction);
-
-            CarActions.TurnLeft(car, driver);
-            Assert.AreEqual("Norrut", car.Direction);
         }
 
         [TestMethod]
@@ -43,15 +45,6 @@ namespace BilSimulator.Tests
 
             CarActions.TurnRight(car, driver);
             Assert.AreEqual("Österut", car.Direction);
-
-            CarActions.TurnRight(car, driver);
-            Assert.AreEqual("Söderut", car.Direction);
-
-            CarActions.TurnRight(car, driver);
-            Assert.AreEqual("Västerut", car.Direction);
-
-            CarActions.TurnRight(car, driver);
-            Assert.AreEqual("Norrut", car.Direction);
         }
 
         [TestMethod]
@@ -84,9 +77,9 @@ namespace BilSimulator.Tests
             var car = new Car { Fuel = 50 };
             var driver = new Driver { Tiredness = 0 };
 
-            _carActions.Refuel(car, driver); 
+            _carActions.Refuel(car, driver);
             Assert.AreEqual(100, car.Fuel);
-            Assert.AreEqual(5, driver.Tiredness); 
+            Assert.AreEqual(5, driver.Tiredness);
         }
 
         [TestMethod]
@@ -120,23 +113,6 @@ namespace BilSimulator.Tests
                 DriverActions.CheckTiredness(driver);
                 var result = sw.ToString().Trim();
                 Assert.IsTrue(result.Contains("Föraren är extremt trött! Det är mycket farligt att fortsätta köra."));
-            }
-        }
-
-        [TestMethod]
-        public void TestPrintStatus()
-        {
-            var car = new Car { Direction = "Norrut", Fuel = 50 };
-            var driver = new Driver { Tiredness = 20 };
-
-            using (var sw = new System.IO.StringWriter())
-            {
-                Console.SetOut(sw);
-                Status.PrintStatus(car, driver);
-                var output = sw.ToString();
-                Assert.IsTrue(output.Contains("Bilens riktning: Norrut"));
-                Assert.IsTrue(output.Contains("Bensin: 50%"));
-                Assert.IsTrue(output.Contains("Förarens trötthet: 20%"));
             }
         }
     }

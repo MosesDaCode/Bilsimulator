@@ -8,6 +8,7 @@ namespace BilSimulator
 {
     public class CarActions
     {
+        public static bool IsTesting = false;
         public static void Drive(Car car, Driver driver)
         {
             if (car.Fuel <= 0)
@@ -15,7 +16,7 @@ namespace BilSimulator
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Bensinen är slut! Du måste tanka. Tryck på enter för att fortsätta");
                 Console.ResetColor();
-                Console.ReadKey();
+                if (!IsTesting)Console.ReadKey();
                 return;
             }
 
@@ -25,7 +26,7 @@ namespace BilSimulator
 
             Console.WriteLine($"Bilen kör framåt och är nu riktad {car.Direction}. Tryck på enter för att fortsätta");
             DriverActions.CheckTiredness(driver);
-            Console.ReadKey();
+            if (!IsTesting) Console.ReadKey();
         }
 
         public static void TurnLeft(Car car, Driver driver)
@@ -35,7 +36,7 @@ namespace BilSimulator
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Bensinen är slut! Du måste tanka. Tryck på enter för att fortsätta");
                 Console.ResetColor();
-                Console.ReadKey();
+                if (!IsTesting) Console.ReadKey();
                 return;
             }
 
@@ -51,7 +52,7 @@ namespace BilSimulator
             driver.Tiredness += 5;
             Console.WriteLine($"Bilen svänger vänster och är nu riktad {car.Direction}. Tryck på enter för att fortsätta");
             DriverActions.CheckTiredness(driver);
-            Console.ReadKey();
+            if (!IsTesting) Console.ReadKey();
 
         }
 
@@ -62,7 +63,7 @@ namespace BilSimulator
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Bensinen är slut! Du måste tanka. Tryck på enter för att fortsätta");
                 Console.ResetColor();
-                Console.ReadKey();
+                if (!IsTesting)Console.ReadKey();
                 return;
             }
             car.Direction = car.Direction switch
@@ -77,7 +78,7 @@ namespace BilSimulator
             driver.Tiredness += 5;
             Console.WriteLine($"Bilen svänger höger och är nu riktad {car.Direction}. Tryck på enter för att fortsätta");
             DriverActions.CheckTiredness(driver);
-            Console.ReadKey();
+            if (!IsTesting)Console.ReadKey();
         }
 
         public static void Reverse(Car car, Driver driver)
@@ -87,16 +88,16 @@ namespace BilSimulator
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Bensinen är slut! Du måste tanka. Tryck på enter för att fortsätta");
                 Console.ResetColor();
-                Console.ReadKey();
+                if (IsTesting)Console.ReadKey();
                 return;
             }
 
             car.Fuel -= 5;
             driver.Tiredness += 5;
 
-            Console.WriteLine($"Bilen backar och är nu riktad {car.Direction}. Tryck på enter för att fortsätta");
+            Console.WriteLine($"Bilen backar och äISr nu riktad {car.Direction}. Tryck på enter för att fortsätta");
             DriverActions.CheckTiredness(driver);
-            Console.ReadKey();
+            if (!IsTesting) Console.ReadKey();
 
         }
 
@@ -107,7 +108,7 @@ namespace BilSimulator
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Bilen är nu fulltankad. Tryck på enter för att fortsätta");
             Console.ResetColor();
-            Console.ReadKey();
+            if(!IsTesting)Console.ReadKey();
         }
     }
 }

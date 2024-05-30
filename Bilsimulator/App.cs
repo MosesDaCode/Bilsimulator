@@ -12,12 +12,14 @@ namespace BilSimulator
         private readonly Car _car;
         private readonly Driver _driver;
         private readonly CarActions _carActions;
+        private readonly Status _status;
 
         public App()
         {
             _car = new Car();
             _driver = new Driver();
             _carActions = new CarActions();
+            _status = new Status();
         }
 
         public void Run()
@@ -56,7 +58,7 @@ namespace BilSimulator
                         break;
                 }
                 Console.Clear();
-                Status.PrintStatus(_car, _driver);
+                _status.PrintStatus(_car, _driver);
 
             }
         }
