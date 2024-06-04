@@ -30,8 +30,6 @@ namespace BilSimulator
 
             while (true)
             {
-                PrintApiData();
-                _status.PrintStatus(_car, _driver);
                 ShowMenu.PrintMenu();
                 string command = Console.ReadLine().ToLower();
 
