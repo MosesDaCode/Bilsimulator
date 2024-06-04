@@ -31,5 +31,18 @@ namespace BilSimulatorNUnit
             Assert.AreEqual(expectedFuel, car.Fuel);
             Assert.AreEqual(expectedTiredness, driver.Tiredness);
         }
+
+        [TestCase("Norrut", "Västerut")]
+        [TestCase("Västerut", "Söderut")]
+        [TestCase("Söderut", "Österut")]
+        public void TestTurnLeft(string initialDirection, string expectedDirection)
+        {
+            var car = new Car { Direction = initialDirection };
+            var driver = new Driver();
+
+            CarActions.TurnLeft(car, driver);
+
+            Assert.AreEqual(expectedDirection, car.Direction);
+        }
     }
 }

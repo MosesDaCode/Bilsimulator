@@ -26,6 +26,7 @@ namespace BilSimulator
         {
             while (true)
             {
+
                 ShowMenu.PrintMenu();
                 string command = Console.ReadLine().ToLower();
 
