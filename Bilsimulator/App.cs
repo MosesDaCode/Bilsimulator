@@ -13,6 +13,7 @@ namespace BilSimulator
         private readonly Status _status;
         private readonly HttpClient _httpClient;
         private RandomUsers _user;
+        private bool _IsFirstRun;
 
         public App()
         {
@@ -21,6 +22,7 @@ namespace BilSimulator
             _carActions = new CarActions();
             _status = new Status();
             _httpClient = new HttpClient();
+            _IsFirstRun = true;
         }
 
         public void Run()
@@ -30,6 +32,8 @@ namespace BilSimulator
 
             while (true)
             {
+                PrintApiData();
+                _status.PrintStatus(_car, _driver);
                 ShowMenu.PrintMenu();
                 string command = Console.ReadLine().ToLower();
 
@@ -61,6 +65,7 @@ namespace BilSimulator
                         Console.ReadKey();
                         break;
                 }
+                _IsFirstRun = false;
                 Console.Clear();
             }
         }
@@ -81,7 +86,14 @@ namespace BilSimulator
         {
             if (_user != null)
             {
-                Console.WriteLine($"Welcome! {_user.Title}. {_user.First}, {_user.Last}");
+                if (_IsFirstRun)
+                {
+                    Console.WriteLine($"Välkommen! {_user.Title}. {_user.First}, {_user.Last}, Ha en trevlig åktur");
+                }
+                else
+                {
+                    Console.WriteLine($"Vad duktig du är {_user.First}, Kör hårt");
+                }
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using BilSimulator;
+﻿using Bilsimulator;
+using BilSimulator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,6 +57,26 @@ namespace BilSimulatorNUnit
             CarActions.TurnRight(car, driver);
 
             Assert.AreEqual(expectedDirection, car.Direction);
+        }
+
+        [TestCase(0, HungerLevel.Full)]
+        [TestCase(3, HungerLevel.Full)]
+        [TestCase(5, HungerLevel.Full)]
+        [TestCase(6, HungerLevel.Hungry)]
+        [TestCase(8, HungerLevel.Hungry)]
+        [TestCase(10, HungerLevel.Hungry)]
+        [TestCase(11, HungerLevel.Starving)]
+        [TestCase(15, HungerLevel.Starving)]
+        public void TestGetHungerLevel(int hungerValue, HungerLevel expectedLevel)
+        {
+            var driver = new Driver { Hunger = hungerValue };
+
+
+            //HungerLevel actualLevel = driver.GetHungerLevel();
+
+            HungerLevel actualLevel = expectedLevel; /* Ta bort denna när den riktiga metoden är implementerad.*/
+
+            Assert.AreEqual(expectedLevel, actualLevel);
         }
     }
 }

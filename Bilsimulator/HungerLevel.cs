@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BilSimulator
+namespace Bilsimulator
 {
-    public class Driver
+    public enum HungerLevel
     {
-        public int Tiredness { get; set; } = 0;
-        public int Hunger { get; set; }
+        Full,
+        Hungry,
+        Starving
     }
 }
