@@ -44,5 +44,18 @@ namespace BilSimulatorNUnit
 
             Assert.AreEqual(expectedDirection, car.Direction);
         }
+
+        [TestCase("Norrut", "Österut")]
+        [TestCase("Österut", "Söderut")]
+        [TestCase("Söderut", "Västerut")]
+        public void TestTurnRight(string initialDirection, string expectedDirection)
+        {
+            var car = new Car { Direction = initialDirection };
+            var driver = new Driver();
+
+            CarActions.TurnRight(car, driver);
+
+            Assert.AreEqual(expectedDirection, car.Direction);
+        }
     }
 }
