@@ -9,6 +9,5 @@ namespace BilSimulator
     public class Driver
     {
         public int Tiredness { get; set; } = 0;
-        public int Hunger { get; set; }
     }
 }

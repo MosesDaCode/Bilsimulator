@@ -4,8 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bilsimulator
+namespace Services.DriverService
 {
+    public interface IDriver
+    {
+        int Hunger { get; set; }
+        void IncreaseHunger();
+        void Eat();
+        HungerLevel GetHungerlevel();
+    }
+
     public enum HungerLevel
     {
         Full,

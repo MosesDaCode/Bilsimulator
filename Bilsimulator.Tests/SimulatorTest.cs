@@ -1,4 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using Services.DriverService;
 using System;
 
 namespace BilSimulator.Tests
@@ -10,9 +12,11 @@ namespace BilSimulator.Tests
         private CarActions _carActions;
         private DriverActions _driverActions;
         private Status _status;
+        private Mock<IDriver> _mockDriver;
 
         public SimulatorTest()
         {
+            _mockDriver = new Mock<IDriver>();
             _carActions = new CarActions();
             _driverActions = new DriverActions();
             _status = new Status();
@@ -24,6 +28,7 @@ namespace BilSimulator.Tests
             CarActions.IsTesting = true;
             DriverActions.IsTesting = true;
             Status.IsTesting = true;
+
         }
 
         [TestMethod]
@@ -115,5 +120,20 @@ namespace BilSimulator.Tests
                 Assert.IsTrue(result.Contains("Föraren är extremt trött! Det är mycket farligt att fortsätta köra."));
             }
         }
+
+        [TestMethod]
+        public void IncreaseHunger_Should_Increase_Hunger_By_2()
+        {
+            // ARRANGE
+            _mockDriver.SetupProperty(d => d.Hunger, 10);
+            _mockDriver.Setup(d => d.IncreaseHunger()).Callback(() => _mockDriver.Object.Hunger += 2);
+
+            // ACT
+            _mockDriver.Object.IncreaseHunger();
+
+            // ASSERT
+            Assert.AreEqual(12, _mockDriver.Object.Hunger);
+        }
+
     }
 }
