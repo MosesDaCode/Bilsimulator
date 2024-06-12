@@ -11,7 +11,7 @@ namespace Services.DriverService
         int Hunger { get; set; }
         void IncreaseHunger();
         void Eat();
-        HungerLevel GetHungerlevel();
+        HungerLevel GetHungerLevel();
     }
 
     public enum HungerLevel

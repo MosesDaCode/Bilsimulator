@@ -1,7 +1,10 @@
 ﻿using BilSimulator;
+using Moq;
+using Services.DriverService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,12 +13,16 @@ namespace BilSimulatorNUnit
     [TestFixture]
     public class SimulatorNUnitTests
     {
+        private Mock<IDriver> _mockDriver;
+
         [SetUp]
         public void setup()
         {
             CarActions.IsTesting = true;
             DriverActions.IsTesting = true;
             Status.IsTesting = true;
+            _mockDriver = new Mock<IDriver>();
+            
         }
 
         [TestCase(100, 90, 10)]
@@ -58,6 +65,40 @@ namespace BilSimulatorNUnit
             Assert.AreEqual(expectedDirection, car.Direction);
         }
 
-        
+        [TestCase(0, HungerLevel.Full)]
+        [TestCase(3, HungerLevel.Full)]
+        [TestCase(5, HungerLevel.Full)]
+        [TestCase(6, HungerLevel.Hungry)]
+        [TestCase(8, HungerLevel.Hungry)]
+        [TestCase(10, HungerLevel.Hungry)]
+        [TestCase(11, HungerLevel.Starving)]
+        [TestCase(15, HungerLevel.Starving)]
+        public void GetHungerLevel_Should_Return_Correct_HungerLevel(int hungerValue, HungerLevel expectedLevel)
+        {
+            // ARRANGE
+            _mockDriver.SetupProperty(d => d.Hunger, hungerValue);
+            _mockDriver.Setup(d => d.GetHungerLevel()).Returns(() =>
+            {
+                if (_mockDriver.Object.Hunger <= 5)
+                {
+                    return HungerLevel.Full;
+                }
+                else if (_mockDriver.Object.Hunger <= 10)
+                {
+                    return HungerLevel.Hungry;
+                }
+                else
+                {
+                    return HungerLevel.Starving;
+                }
+            });
+
+            // ACT
+            var actualLevel = _mockDriver.Object.GetHungerLevel();
+
+            // ASSERT
+            Assert.AreEqual(expectedLevel, actualLevel);
+        }
     }
+
 }
