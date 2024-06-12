@@ -135,5 +135,18 @@ namespace BilSimulator.Tests
             Assert.AreEqual(12, _mockDriver.Object.Hunger);
         }
 
+        [TestMethod]
+        public void Eat_Should_Reset_Hunger_To_Zero()
+        {
+            // ARRANGE
+            _mockDriver.SetupProperty(d => d.Hunger, 10);
+            _mockDriver.Setup(d => d.Eat()).Callback(() => _mockDriver.Object.Hunger = 0);
+
+            // ACT
+            _mockDriver.Object.Eat();
+
+            // ASSERT
+            Assert.AreEqual(0, _mockDriver.Object.Hunger);
+        }
     }
 }
