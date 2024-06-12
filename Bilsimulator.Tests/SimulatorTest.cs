@@ -148,5 +148,23 @@ namespace BilSimulator.Tests
             // ASSERT
             Assert.AreEqual(0, _mockDriver.Object.Hunger);
         }
+
+        [TestMethod]
+        public void IncreaseHunger_Should_Throw_Exception_If_Hunger_Greater_Than_Or_Equal_To_16()
+        {
+            // ARRANGE
+            _mockDriver.SetupProperty(d => d.Hunger, 14);
+            _mockDriver.Setup(d => d.IncreaseHunger()).Callback(() =>
+            {
+                _mockDriver.Object.Hunger += 2;
+                if (_mockDriver.Object.Hunger >= 16)
+                {
+                    throw new InvalidOperationException("Föraren är för hungrig! Spelet är över.");
+                }
+            });
+
+            // ACT & ASSERT
+            Assert.ThrowsException<InvalidOperationException>(() => _mockDriver.Object.IncreaseHunger());
+        }
     }
 }
