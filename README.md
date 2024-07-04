@@ -17,3 +17,9 @@ Bilsimulatorn är ett program utvecklat för att simulera körning i olika milj�
 1. Klona detta repository:
    ```bash
    git clone https://github.com/MosesDaCode/Bilsimulator.git
+2. Öppna projektet i din föredragna IDE och bygg lösningen.
+
+## Användning
+- Starta programmet och välj ditt fordon.
+- Utforska miljöerna och testa olika körförhållanden och units.
+- Använd den integrerade API för att styra simulatorn och få feedback.
